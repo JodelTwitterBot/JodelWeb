@@ -1,0 +1,61 @@
+
+<div id="map" class="half"></div>
+<script src="static/js/leaflet.js"></script>
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }
+
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  } 
+  return null;
+}
+		var lat = 51;
+		var lng = 10;
+		var zoom = 5;
+		if(getQueryVariable("lat") != null && getQueryVariable("lng") != null && getQueryVariable("zoom") != null) {
+			lat = getQueryVariable("lat");
+			lng = getQueryVariable("lng");
+			zoom = getQueryVariable("zoom");
+		}
+		var map = L.map('map').setView([lat, lng], zoom);
+		
+		var extendedIcons = L.Icon.Default;
+				
+		var unknown = new extendedIcons({iconUrl: '/static/js/images/jodel.png'});
+		
+		L.tileLayer('<?=$mapsource?>', {
+			maxZoom: 22,
+			attribution: 'Seitenbetreiber ist nicht Verfasser der Inhalte, CC-BY 4.0 | Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		}).addTo(map);
+		
+		<? foreach($facilities) { ?>
+		L.marker([<?=$lat?>, <?=$long?>], {icon: unknown}).addTo(map)
+			.bindPopup('<b>Zeit: <?=$time?></b><br/><?=$!descr?>');
+			<? } ?>
+		
+		map.addEventListener('resize moveend', function updateUrl(e) {
+			window.history.pushState(null,"","/?lat="+map.getCenter().lat+"&lng="+map.getCenter().lng+"&zoom="+map.getZoom());
+			
+		});
+		getLocation();
+		function showPosition(position) {
+ map.panTo(new L.LatLng(osition.coords.latitude, position.coords.longitude));
+}
+		function possub() {
+			$.get("/search?query="+$('#query').val(), function(data) {
+				//alert(data[0].lat);
+				map.setView([data[0].lat, data[0].lon], 16);
+			}, "json");return false;
+		}
+	</script>

@@ -1,0 +1,16 @@
+=Jetty (tested with 9.2.1 and servlet-api-3.1)=
+jetty-http-**.jar
+jetty-io-**.jar
+jetty-security-**.jar
+jetty-server-**.jar
+jetty-servlet-**.jar
+jetty-util-**.jar
+servlet-api-**.jar
+commons-lang**.jar
+
+org.json library
+
+=DB Stuff (tested with myslq-connector-java-5.1.31)=
+mysql-connector-java-**-bin.jar
+
+** = Version

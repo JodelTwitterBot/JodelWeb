@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+* {
+	font-family: 'Open Sans';
+}
+body {
+	padding-top: 51px;
+}
+.grey {
+	color: #c0c0c0;
+}
+.overlay {
+	position: absolute;
+
+	max-height: 100vh; 
+	z-index : 990;
+	background: rgba(0, 0, 0, .5);
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	-webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
+	padding: 30px;
+	padding-left: 60px;
+}
+.container:first-of-type {
+	margin-top: 15px;
+}
+#map {
+	position: relative;
+	height: calc(100vh - 51px);
+	width: 100vw;
+}
+
+#half-map {
+	width: 58vw;
+	height: calc(100vh - 51px);
+	display: inline-block;
+	float: left;
+}
+
+#half-map < body {
+	overflow-y: hidden;
+}
+
+#node-overview {
+	width: 40vw;
+	float: right;
+	display: inline;
+	padding: 15px;
+	overflow-y: scroll;
+	height: calc(100vh - 51px);
+}
+
+.mouse-click {
+	cursor: pointer;
+}
+
+.timecontrol {
+	height: 25px;
+}
+
+#playbutton {
+	display: inline;
+}
+
+#timeselect {
+	margin-top: 4px;
+	display: inline;
+	width: calc(100% - 25px);
+	float: right;
+}
